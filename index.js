@@ -22,4 +22,4 @@ const s = require('http').Server((req, res) => {
   }
   res.end();
 });
-s.listen(process.env.PORT || PORT, () => log(process.pid));
+s.listen(process.env.PORT);
