@@ -19,6 +19,8 @@ const s = require('http').Server((req, res) => {
         result["x-body"] = body;
         res.writeHead(200, {...CORS, "Content-Type": "application/json" });
         res.end(JSON.stringify(result));
+    });
+  }
       
   else {
     res.write('Oh no');
