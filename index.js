@@ -6,17 +6,20 @@ const CORS = {
 
 const s = require('http').Server((req, res) => {
   if (req.url === '/result4/') {
-    res.writeHead(200, ...CORS);
-    let header = req.getHeader('x-test');
-    let body = req.method;
+    let header = req.headers["x-test"];
 
     let result = new Object();
     result.message = 'bee_joo';
     result["x-result"] = header;
-    result["x-body"] = body;
-    let json = JSON.stringify(result);
-    res.write(json);
-  }
+    let body = "";
+    
+    req
+      .on("data", (data) => (body += data))
+      .on("end", () => {
+        result["x-body"] = body;
+        res.writeHead(200, {...CORS, "Content-Type": "application/json" });
+        res.end(JSON.stringify(result));
+      
   else {
     res.write('Oh no');
   }
