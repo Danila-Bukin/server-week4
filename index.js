@@ -23,8 +23,7 @@ const s = require('http').Server((req, res) => {
   }
       
   else {
-    res.write('Oh no');
+    res.end('Oh no');
   }
-  res.end();
 });
 s.listen(process.env.PORT);
